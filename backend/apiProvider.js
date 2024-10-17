@@ -5,8 +5,17 @@ class CountriesApi{
     
     async getAvailableCountries() {
         try {
-          const response = await axios.get("https://date.nager.at/api/v3/AvailableCountries");
-          return response.data
+            const countries = await axios.get("https://date.nager.at/api/v3/AvailableCountries")
+            const flags = await axios.get(`https://countriesnow.space/api/v0.1/countries/flag/images`)
+            const availableCountries = countries.data.map(country => {
+                const flagUrl = flags.data.data.find(flag => flag.name === country.name)
+                return {
+                    country: country.name,
+                    countryCode: country.countryCode,
+                    flag: flagUrl ? flagUrl.flag : null
+                }
+            })
+            return availableCountries
         } catch (error) {
           console.error(error);
           return error
@@ -24,7 +33,7 @@ class CountriesApi{
             return error
         }
     }
-
+    
     async getFlagURL(countryName){
         try{
             const response = await axios.get(`https://countriesnow.space/api/v0.1/countries/flag/images`)
