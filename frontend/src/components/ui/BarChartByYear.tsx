@@ -1,7 +1,7 @@
 "use client"
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip } from "recharts"
-import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
+import { ChartContainer} from "@/components/ui/chart"
 import { PoputalionModal } from "@/app/country-info/[countrycode]/page"
 
 interface BarChartByYearProps {

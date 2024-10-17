@@ -1,5 +1,4 @@
 "use client"
-import CountryCard from "@/components/CountryCard";
 import CountryCardList, { CountryCardListSkeleton } from "@/components/CountryCardsList";
 import countryService, { AvailableCountriesModal } from "@/services/CountryService";
 import React from "react";

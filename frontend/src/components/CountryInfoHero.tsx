@@ -1,7 +1,5 @@
 import { CountryInfoModal } from "@/app/country-info/[countrycode]/page";
-import { BarChart, ChartAreaIcon } from "lucide-react";
 import Image from "next/image";
-import { BarChartByYear } from "./ui/BarChartByYear";
 
 interface CountryInfoHero{
     props: CountryInfoModal | null
@@ -24,7 +22,7 @@ export default function CountryInfoHero({props}: CountryInfoHero){
                     <ul className="flex flex-col h-full overflow-y-auto gap-4 py-2 px-1 bg-slate-100 rounded-t-md">
                         {
                             props.populationData.map((data, key)=>(
-                                <div className="flex flex-row gap-2 text-lg text-slate-600 w-full p-2 bg-slate-200 rounded-md">
+                                <div key={key} className="flex flex-row gap-2 text-lg text-slate-600 w-full p-2 bg-slate-200 rounded-md">
                                     <h1>Year: {data.year}</h1>
                                     <h2>Population: {data.value}</h2>
                                 </div>
