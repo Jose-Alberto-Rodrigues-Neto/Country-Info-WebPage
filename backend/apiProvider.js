@@ -1,12 +1,17 @@
 const axios = require('axios').default;
+const dotenv = require('dotenv')
 
+dotenv.config()
 class CountriesApi{
-    constructor(){};
+    constructor(){
+        this.apiDateNager = process.env.API_DATE_NAGER;
+        this.apiCountriesNow = process.env.API_COUNTRIES_NOW
+    };
     
     async getAvailableCountries() {
         try {
-            const countries = await axios.get("https://date.nager.at/api/v3/AvailableCountries")
-            const flags = await axios.get(`https://countriesnow.space/api/v0.1/countries/flag/images`)
+            const countries = await axios.get(`${this.apiDateNager}/AvailableCountries`)
+            const flags = await axios.get(`${this.apiCountriesNow}/flag/images`)
             const availableCountries = countries.data.map(country => {
                 const flagUrl = flags.data.data.find(flag => flag.name === country.name)
                 return {
@@ -24,7 +29,7 @@ class CountriesApi{
     
     async getPopulationData(countryName){
         try {
-            const response  = await axios.get(`https://countriesnow.space/api/v0.1/countries/population`)
+            const response  = await axios.get(`${this.apiCountriesNow}/population`)
             const countries = response.data.data
                                     .find(country => country.country === countryName)        
             const populationCounts = countries.populationCounts
@@ -36,7 +41,7 @@ class CountriesApi{
     
     async getFlagURL(countryName){
         try{
-            const response = await axios.get(`https://countriesnow.space/api/v0.1/countries/flag/images`)
+            const response = await axios.get(`${this.apiCountriesNow}/flag/images`)
             const countries = response.data.data
                                 .find(country => country.name === countryName)
             const flagURL = countries.flag               
@@ -48,7 +53,7 @@ class CountriesApi{
 
     async getCountryInfo(countryCode){
         try {
-            const response = await axios.get(`https://date.nager.at/api/v3/CountryInfo/${countryCode}`)
+            const response = await axios.get(`${this.apiDateNager}/CountryInfo/${countryCode}`)
             const countryName = response.data.commonName
             const region = response.data.region
             const borders = response.data.borders

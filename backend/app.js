@@ -1,5 +1,6 @@
 const express = require('express')
 const dotenv = require('dotenv')
+const cors = require('cors')
 const apiProvider = require('./apiProvider')
 
 dotenv.config()
@@ -8,6 +9,8 @@ const app = express()
 const port = process.env.PORT || 8080
 
 const provider = apiProvider
+
+app.use(cors())
 
 app.get('/available-countries', async (req, res) =>{
     const countries = await provider.getAvailableCountries();
