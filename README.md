@@ -1,4 +1,26 @@
-# Full-Stack-JS-engineer-test-assessment - the-Country-Info-App
+# Country Info App
+
+## What is it?
+
+This is a simple web application that provides basic information about a country, such as nearby countries and population numbers over the years (in the form of a graph).
+
+## Purpose of the Project
+
+To improve my understanding of Back-End and Front-End development, using technologies such as:
+
+#### FrontEnd
+
+- Next.js
+- React.js
+- TypeScript
+- Tailwindcss
+
+#### BackEnd
+
+- Node.js
+- Express.js
+- Restful API
+
 
 ## How to run the app
 
